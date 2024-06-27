@@ -1,0 +1,18 @@
+export const fetchLogin = async ({ email, password }: any) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, {
+    method: "POST",
+    cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Login failed");
+  }
+  const data = res.json();
+  return data;
+};
