@@ -50,7 +50,7 @@ export default function Signup() {
     mutationFn: SignupDataImage,
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
@@ -78,11 +78,11 @@ export default function Signup() {
     setImagePreviews([]);
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     const files = Array.from(e.target.files);
     const fileReaders = files.map((file) => {
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file as Blob);
       return new Promise((resolve) => {
         reader.onload = () => {
           resolve({ file, data: reader.result });
@@ -91,9 +91,13 @@ export default function Signup() {
     });
 
     Promise.all(fileReaders).then((results) => {
+      //@ts-ignore
       const newImages = results.map((result) => result.file);
+      //@ts-ignore
       const newImagePreviews = results.map((result) => result.data);
+      //@ts-ignore
       setImages((prevImages) => [...prevImages, ...newImages]);
+      //@ts-ignore
       setImagePreviews((prevPreviews) => [
         ...prevPreviews,
         ...newImagePreviews,
@@ -102,13 +106,14 @@ export default function Signup() {
     });
   };
 
-  const handleProfileChange = (e) => {
+  const handleProfileChange = (e: any) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
         setProfilePic(file);
+        //@ts-ignore
         setProfilePicData(reader.result);
         setValue("profilePic", file);
       };
@@ -125,12 +130,14 @@ export default function Signup() {
     const input = document.createElement("input");
     input.type = "file";
     input.onchange = (e) => {
+      //@ts-ignore
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
           setProfilePic(file);
+          //@ts-ignore
           setProfilePicData(reader.result);
           setValue("profilePic", file);
         };
@@ -139,17 +146,18 @@ export default function Signup() {
     input.click();
   };
 
-  const removeImage = (index) => {
+  const removeImage = (index: any) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
     setImagePreviews((prevPreviews) =>
-      prevPreviews.filter((_, i) => i !== index),
+      prevPreviews.filter((_, i) => i !== index)
     );
   };
 
-  const editImage = (index) => {
+  const editImage = (index: any) => {
     const input = document.createElement("input");
     input.type = "file";
     input.onchange = (e) => {
+      //@ts-ignore
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
@@ -157,11 +165,13 @@ export default function Signup() {
         reader.onload = () => {
           setImages((prevImages) => {
             const newImages = [...prevImages];
+            //@ts-ignore
             newImages[index] = file;
             return newImages;
           });
           setImagePreviews((prevPreviews) => {
             const newPreviews = [...prevPreviews];
+            //@ts-ignore
             newPreviews[index] = reader.result;
             return newPreviews;
           });
@@ -171,9 +181,11 @@ export default function Signup() {
     input.click();
   };
   const ProfileClick = () => {
+    //@ts-ignore
     ProfileRef?.current.click();
   };
   const PictureClick = () => {
+    //@ts-ignore
     PictureRef?.current.click();
   };
   return (
@@ -283,6 +295,7 @@ export default function Signup() {
             )}
             <input
               id="profilePicInput"
+              //@ts-ignore
               ref={ProfileRef}
               type="file"
               onChange={handleProfileChange}
@@ -308,6 +321,7 @@ export default function Signup() {
           </button>
           <div className="image-preview flex flex-wrap gap-2">
             <input
+              //@ts-ignore
               ref={PictureRef}
               id="fileInput"
               type="file"
