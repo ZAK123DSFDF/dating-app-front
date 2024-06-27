@@ -286,6 +286,7 @@ export default function Profile() {
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <input
                   type="file"
+                  //@ts-ignore
                   ref={inputRef}
                   style={{ display: "none" }}
                   onChange={handleOnChange}
@@ -375,6 +376,7 @@ export default function Profile() {
 
             <input
               type="file"
+              //@ts-ignore
               ref={addPicturesRef}
               style={{ display: "none" }}
               multiple
@@ -391,15 +393,17 @@ export default function Profile() {
               onMouseLeave={() => handlePictureMouseLeave(index)}
             >
               <Image
+                //@ts-ignore
                 src={picture?.PicturePic}
                 fill
                 alt="Picture"
                 className="object-cover"
               />
-              {hoveredIndexes.includes(index) && (
+              {hoveredIndexes.includes(index as never) && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                   <input
                     type="file"
+                    //@ts-ignore
                     ref={inputRef1}
                     style={{ display: "none" }}
                     onChange={handleOnChangePicture}
