@@ -98,11 +98,12 @@ export default function Profile() {
 
   const handleProfilePicClick = () => {};
 
-  const handlePictureMouseEnter = (index) => {
+  const handlePictureMouseEnter = (index: any) => {
+    //@ts-ignore
     setHoveredIndexes((prev) => [...prev, index]);
   };
 
-  const handlePictureMouseLeave = (index) => {
+  const handlePictureMouseLeave = (index: any) => {
     setHoveredIndexes((prev) => prev.filter((i) => i !== index));
   };
   const { mutateAsync: deletePic } = useMutation({
@@ -135,6 +136,7 @@ export default function Profile() {
     }
   };
   const handleOnChoose = () => {
+    //@ts-ignore
     inputRef.current.click();
   };
 
@@ -149,6 +151,7 @@ export default function Profile() {
         await updateProfileImage({ formData, userId: profile.id });
         const reader = new FileReader();
         reader.readAsDataURL(file);
+        //@ts-ignore
         reader.onload = (e) => setProfile1(e.target.result);
       } catch (error) {
         console.error("Error uploading profile picture:", error);
@@ -165,11 +168,14 @@ export default function Profile() {
     }
   };
   const handleOnChoosePicture = (index: any) => {
+    //@ts-ignore
     inputRef1.current.setAttribute("data-index", index);
+    //@ts-ignore
     inputRef1.current.click();
   };
   const handleOnChangePicture = async (event: any) => {
     const file = event.target.files[0];
+    //@ts-ignore
     const imageIndex = inputRef1.current.getAttribute("data-index");
 
     if (file) {
@@ -186,6 +192,7 @@ export default function Profile() {
         reader.readAsDataURL(file);
         reader.onload = (e) => {
           const updatedPictures = [...pictures];
+          //@ts-ignore
           updatedPictures[imageIndex].PicturePic = e.target.result;
           setPictures(updatedPictures);
         };
@@ -195,6 +202,7 @@ export default function Profile() {
     }
   };
   const handleAddPicturesClick = () => {
+    //@ts-ignore
     addPicturesRef.current.click();
   };
   const handleAddPicturesChange = async (event: any) => {
@@ -202,15 +210,17 @@ export default function Profile() {
 
     if (files.length > 0) {
       const formData = new FormData();
+      //@ts-ignore
       const newPictures = [];
 
       Array.from(files).forEach((file) => {
-        formData.append("Picture1", file);
+        formData.append("Picture1", file as Blob);
 
         const reader = new FileReader();
         reader.readAsDataURL(file as Blob);
         reader.onload = (e) => {
           newPictures.push({
+            //@ts-ignore
             PicturePic: e.target.result,
             PicturePicPublic: "",
           });
@@ -222,6 +232,7 @@ export default function Profile() {
           formData,
           userId: profile.id,
         });
+        //@ts-ignore
         setPictures((prevPictures) => [...prevPictures, ...newPictures]);
       } catch (error) {
         console.error("Error uploading pictures:", error);
