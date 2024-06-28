@@ -1,7 +1,5 @@
-import { baseUrl } from "@/config";
-
 export const fetchLogin = async ({ email, password }: any) => {
-  const res = await fetch(`${baseUrl}/auth/login`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, {
     method: "POST",
     cache: "no-store",
     headers: {
