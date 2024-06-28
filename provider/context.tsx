@@ -18,14 +18,17 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
-        const response = await fetch(`${baseUrl}/auth/check`, {
-          method: "GET",
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/check`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const data = await response.json();
         if (data.isAuthenticated) {
           if (!socketRef.current) {
-            const newSocket = io(`${baseUrl}`, {
+            const newSocket = io(`${process.env.NEXT_PUBLIC_BASE_URL}`, {
               query: { id: localStorage.getItem("userId") },
               withCredentials: true,
             });
