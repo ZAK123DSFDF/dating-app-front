@@ -9,7 +9,7 @@ export default function Login() {
     mutationFn: fetchLogin,
     onSuccess: (data) => {
       localStorage.setItem("userId", data.id);
-      // window.location.href = "/chat";
+      window.location.href = "/chat";
     },
   });
   const handleSubmit = async (e: any) => {

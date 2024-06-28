@@ -6,6 +6,7 @@ export async function getUsersDataLogOut() {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
   });
 
   if (!res.ok) {
@@ -14,8 +15,8 @@ export async function getUsersDataLogOut() {
   }
 
   const data = await res.json();
-  if (data) {
-    cookies().delete("token");
-  }
+  // if (data) {
+  //   cookies().delete("token");
+  // }
   return data;
 }
