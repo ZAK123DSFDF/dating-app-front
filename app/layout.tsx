@@ -4,7 +4,6 @@ import "./globals.css";
 import { SocketProvider } from "@/provider/context";
 import { NotificationProvider } from "@/provider/notification";
 import QueryProvider from "@/provider/query";
-import ErrorBoundary from "./components/ErrorBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
