@@ -1,5 +1,3 @@
-"use server";
-import { cookies } from "next/headers";
 export const fetchLogin = async ({ email, password }: any) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, {
     method: "POST",
@@ -7,6 +5,7 @@ export const fetchLogin = async ({ email, password }: any) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({ email, password }),
   });
 
@@ -16,12 +15,12 @@ export const fetchLogin = async ({ email, password }: any) => {
   }
   const data = await res.json();
 
-  if (data) {
-    cookies().set({
-      name: "token",
-      value: data.token,
-      httpOnly: true,
-    });
-  }
+  // if (data) {
+  //   cookies().set({
+  //     name: "token",
+  //     value: data.token,
+  //     httpOnly: true,
+  //   });
+  // }
   return data;
 };
