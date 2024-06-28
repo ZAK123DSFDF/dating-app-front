@@ -1,5 +1,3 @@
-"use server";
-
 export const fetchLogin = async ({ email, password }: any) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, {
     method: "POST",

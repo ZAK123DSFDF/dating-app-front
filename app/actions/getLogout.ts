@@ -1,5 +1,3 @@
-"use server";
-import { cookies } from "next/headers";
 export async function getUsersDataLogOut() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`, {
     cache: "no-store",
