@@ -4,6 +4,7 @@ import "./globals.css";
 import { SocketProvider } from "@/provider/context";
 import { NotificationProvider } from "@/provider/notification";
 import QueryProvider from "@/provider/query";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <QueryProvider>
-          <SocketProvider>
-            <NotificationProvider>{children}</NotificationProvider>
-          </SocketProvider>
-        </QueryProvider>
+        <ErrorBoundary>
+          <QueryProvider>
+            <SocketProvider>
+              <NotificationProvider>{children}</NotificationProvider>
+            </SocketProvider>
+          </QueryProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
