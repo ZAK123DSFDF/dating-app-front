@@ -1,3 +1,4 @@
+"use server";
 import { cookies } from "next/headers";
 
 export const fetchLogin = async ({ email, password }: any) => {

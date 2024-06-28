@@ -3,7 +3,7 @@ import Chat from "@/app/components/Chat";
 import React from "react";
 
 export default async function page() {
-  await getAuthData();
+  // await getAuthData();
 
   return <Chat />;
 }
