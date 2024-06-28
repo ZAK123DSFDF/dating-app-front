@@ -21,13 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ErrorBoundary>
-          <QueryProvider>
-            <SocketProvider>
-              <NotificationProvider>{children}</NotificationProvider>
-            </SocketProvider>
-          </QueryProvider>
-        </ErrorBoundary>
+        <QueryProvider>
+          <SocketProvider>
+            <NotificationProvider>{children}</NotificationProvider>
+          </SocketProvider>
+        </QueryProvider>
       </body>
     </html>
   );
