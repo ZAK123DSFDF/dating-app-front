@@ -1,5 +1,4 @@
 "use client";
-import { baseUrl } from "@/config";
 import React, { createContext, useEffect, useRef, useState } from "react";
 import io, { Socket } from "socket.io-client";
 
@@ -31,6 +30,7 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
             const newSocket = io(`${process.env.NEXT_PUBLIC_BASE_URL}`, {
               query: { id: localStorage.getItem("userId") },
               withCredentials: true,
+              transports: ["websocket"],
             });
             socketRef.current = newSocket;
             setSocket(newSocket);
