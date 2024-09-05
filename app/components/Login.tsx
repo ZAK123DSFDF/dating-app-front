@@ -47,7 +47,7 @@ export default function Login() {
           {isPending ? "loading..." : "login"}
         </button>
         <div className="flex gap-2">
-          <h1>don't have an account?</h1>
+          <h1>dont have an account?</h1>
           <Link href="/signup" className="text-blue-500">
             signup
           </Link>
