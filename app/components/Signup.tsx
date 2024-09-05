@@ -8,6 +8,7 @@ import { AiFillPicture } from "react-icons/ai";
 import { IoMdAdd } from "react-icons/io";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Signup() {
   const ProfileRef = useRef();
@@ -369,6 +370,12 @@ export default function Signup() {
       >
         signup
       </button>
+      <div className="flex gap-2">
+        <h1> have an account?</h1>
+        <Link href="/login" className="text-blue-500">
+          Login
+        </Link>
+      </div>
     </form>
   );
 }

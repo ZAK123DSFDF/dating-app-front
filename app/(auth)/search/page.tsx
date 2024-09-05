@@ -6,5 +6,6 @@ export default async function page() {
   if (!auth.isAuthenticated) {
     redirect("/login");
   }
+
   return <Search />;
 }

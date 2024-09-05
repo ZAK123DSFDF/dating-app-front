@@ -1,7 +1,13 @@
+import { getAuthData } from "@/app/actions/getAuth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const auth = await getAuthData();
+  if (auth.isAuthenticated) {
+    redirect("/chat");
+  }
   return (
     <div className="h-screen w-screen flex flex-col gap-3 items-center justify-center">
       <h1 className="font-bold">checkout not successful</h1>

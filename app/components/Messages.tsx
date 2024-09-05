@@ -121,6 +121,7 @@ export default function Messages({ typed, setTyped }: any) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
+  console.log("this is the profile picture of the other", messages);
   return (
     <div
       ref={chatContainerRef}
@@ -136,7 +137,8 @@ export default function Messages({ typed, setTyped }: any) {
           {id !== message?.senderId && (
             <div className="relative w-10 h-10 overflow-hidden rounded-full">
               <Image
-                src={messages?.participants[0].ProfilePic}
+                //@ts-ignore
+                src={message?.sender.ProfilePic}
                 fill
                 className="absolute object-cover"
                 alt="Participant Profile Pic"
@@ -165,7 +167,8 @@ export default function Messages({ typed, setTyped }: any) {
           {id === message?.senderId && (
             <div className="relative w-10 h-10 overflow-hidden rounded-full">
               <Image
-                src={messages?.participants[0].ProfilePic}
+                //@ts-ignore
+                src={message?.sender.ProfilePic}
                 fill
                 className="absolute object-cover"
                 alt="Participant Profile Pic"

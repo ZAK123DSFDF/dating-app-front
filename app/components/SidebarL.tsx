@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { getUsersDataLogOut } from "@/app/actions/getLogout";
+import Image from "next/image";
 
 const buttons = [
   { icon: <IoIosChatbubbles />, label: "Chat", route: "/chat" },
@@ -55,7 +56,13 @@ export default function SidebarL() {
   return (
     <>
       <div className="hidden lg:block h-screen min-w-60 drop-shadow-lg bg-[#F9F9F9]">
-        <h1 className="text-4xl font-extrabold">logo here</h1>
+        <Image
+          src={"/logo.svg"}
+          width={160}
+          height={100}
+          alt="logo"
+          className="ml-5 mt-5"
+        />
         <div className="flex flex-col gap-4 mt-4 text-gray-900 font-medium">
           {buttons.map((button, index) => {
             const isLogoutButton = button.label === "Logout";

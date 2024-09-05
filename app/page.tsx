@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function Page() {
+import { getAuthData } from "./actions/getAuth";
+import { redirect } from "next/navigation";
+export default async function Page() {
+  const auth = await getAuthData();
+  if (auth.isAuthenticated) {
+    redirect("/chat");
+  }
   return (
     <div className="relative w-screen h-screen flex items-center justify-center">
       <Image

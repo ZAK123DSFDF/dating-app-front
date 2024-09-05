@@ -75,9 +75,10 @@ export default function Profile() {
     }
   }, [profile]);
 
-  const { mutateAsync: updateProfileImage } = useMutation({
-    mutationFn: UpdateProfileImage,
-  });
+  const { mutateAsync: updateProfileImage, isPending: loadingProfile } =
+    useMutation({
+      mutationFn: UpdateProfileImage,
+    });
   const { mutateAsync: deleteProfileImageMutation } = useMutation({
     mutationFn: deleteProfileImage,
   });
@@ -273,16 +274,20 @@ export default function Profile() {
             onClick={handleProfilePicClick}
           >
             {profile1 ? (
-              <Image
-                alt="Profile picture"
-                fill
-                src={profile1}
-                className="object-cover"
-              />
+              loadingProfile ? (
+                <h1>Loading...</h1>
+              ) : (
+                <Image
+                  alt="Profile picture"
+                  fill
+                  src={profile1}
+                  className="object-cover"
+                />
+              )
             ) : (
               <RxAvatar className="text-9xl text-gray-400" />
             )}
-            {hovered && (
+            {hovered && !loadingProfile && (
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <input
                   type="file"
